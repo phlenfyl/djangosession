@@ -1,0 +1,208 @@
+{% extends "_base.html" %}
+
+
+
+{% load static %}
+{% comment %} {% load humanize %} {% endcomment %}
+
+
+<!-- title section -->
+{% block title %} | Home{% endblock title %}
+
+
+<!-- upper header section -->
+{% block header %}
+  {% include "components/navbar.html" %}
+{% endblock header %}
+
+
+<!-- banner section -->
+{% block banner %}
+  {% include "components/banner.html" %}
+{% endblock banner %}
+
+<!--content -->
+{% block content %}
+<div class="container mx-auto px-5">
+  <!-- ############### card ############## -->
+  <div class="mainCard flex item-center justify-evenly pt-6">
+    <div  class="py-4">
+      <div class="title md:py-6 my-4 text-center">
+        <h3 class="py-4 text-xm md:text-lg font-bold text-[#B1250A] font-sans">CHECK OUT THE LATEST FOOD INGREDIENTS</h3>
+        <h1 class="py-4 text-2xl md:text-4xl font-bold font-sans">What Food Ingredients Will You Like To Buy?</h1>
+      </div>
+      <div class="card">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-5 md:gap-4">  
+          <div class="hm">
+            <a href="#" class="flex flex-col items-center md:h-80 bg-[#F7EBEA] border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-[#F7EBEA] dark:border-gray-700 dark:bg-[#F7EBEA] dark:hover:bg-gray-700">
+                <img width="500" height="500" class="object-cover h-80 md:w-80 md:rounded-none" src="{% static '' %}image/snacks.png" alt=""/>
+                <div class="flex flex-col justify-between items-center md:text-left p-4 leading-normal w-screen">
+                  <span class="text-red-600 text-xs md:text-xm font-bold pb-6">SHOP</span>
+                  <h5 class="mb-2 text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Food Condiments</h5>
+                  <p class="mb-3 text-center md:text-left font-normal text-gray-700 dark:text-gray-400 md:w-48 pb-4">Enhance your flavor and complement your dish</p>
+                  <div class="mt-4">
+                    <button type="button" class="flex text-red-700 hover:text-white w-36 md:w-44 border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-semibold font-sans text-xm md:text-base px-2 md:px-5 py-3.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                      SHOP NOW
+                      <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 ml-3 w-3.5" fill="#B1250A" height="1.2em" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+                    </button>
+
+                  </div>
+                </div>
+            </a>
+          </div>                   
+          <div class="hm">
+            <a href="#" class="flex flex-col items-center md:h-80 bg-[#B1250A] border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl 0 dark:border-gray-700 dark:bg-gray-800 dark:0">
+                <div class="flex flex-col justify-between items-center md:text-right p-4 leading-normal w-screen">
+                  <span class="text-white font-bold text-xs md:text-xm pb-6">SHOP</span>
+                    <h5 class="mb-2 text-base md:text-2xl font-bold tracking-tight text-white dark:text-white">Food Condiments</h5>
+                    <p class="mb-3 text-center md:text-right font-normal text-white dark:text-white pb-4">Enhance your flavor and complement your dish</p>
+                    <div class="pl-3.5 mt-4">
+
+                      <button type="button" class="flex text-white md:ml-6 hover:text-white w-36 md:w-44 border border-white ocus:ring-4 focus:outline-none focus:ring-red-300 font-semibold font-sans text-xm md:text-base px-2 md:px-5 py-3.5 text-center md:mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark: dark:focus:ring-red-900">
+                        SHOP NOW
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 ml-3 w-3.5" fill="#F7EBEA" height="1.2em" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+                      </button>
+                    </div>
+                </div>
+                <img class="object-cover h-80 w-full md:w-80 md:rounded-none" src="{% static '' %}image/cont.jpg" alt=""/>
+            </a>
+          </div>                   
+          <div class="hm">
+            <a href="#" class="flex flex-col items-center md:h-80 bg-[#F7EBEA] border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl A] dark:border-gray-700 dark:bg-[#F7EBEA] dark:0">
+                <img class="object-cover h-80 w-full md:w-80 md:rounded-none" src="{% static '' %}image/oil.png" alt=""/>
+                <div class="flex flex-col justify-between items-center md:text-left p-4 leading-normal w-screen">
+                  <span class="text-red-600 font-bold m md:text-xm pb-6">SHOP</span>
+                  <h5 class="mb-2 text-base md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Food Condiments</h5>
+                  <p class="mb-3 text-center md:text-left font-normal text-gray-700 dark:text-gray-400 md:w-48 pb-4">Enhance your flavor and complement your dish</p>
+                  <div class="mt-4">
+                    <button type="button" class="flex text-red-700 hover:text-white w-36 md:w-44 border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-semibold font-sans text-xm md:text-base px-2 md:px-5 py-3.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                      SHOP NOW
+                      <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 ml-3 w-3.5" fill="#B1250A" height="1.2em" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+                    </button>
+
+                  </div>
+                </div>
+            </a>
+          </div>                   
+          <div class="hm">
+            <a href="#" class="flex flex-col items-center md:h-80 bg-[#B1250A] border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl 0 dark:border-gray-700 dark:bg-gray-800 dark:0">
+                <div class="flex flex-col justify-between items-center md:text-right p-4 leading-normal w-screen md:ml-6 md:pl-4">
+                  <span class="text-white font-bold text-xs md:text-xm pb-6">SHOP</span>
+                  <h5 class="mb-2 text-base md:text-2xl font-bold tracking-tight text-white dark:text-white">Food Condiments</h5>
+                  <p class="mb-3 text-center md:text-right font-normal text-white dark:text-white pb-4">Enhance your flavor and complement your dish</p>
+                  <div class="pl-3.5 mt-4">
+
+                    <button type="button" class="flex text-white md:ml-6 hover:text-white w-36 md:w-44 border border-white ocus:ring-4 focus:outline-none focus:ring-red-300 font-semibold font-sans text-xm md:text-base px-2 md:px-5 py-3.5 text-center md:mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark: dark:focus:ring-red-900">
+                      SHOP NOW
+                      <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 ml-3 w-3.5" fill="#F7EBEA" height="1.2em" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+                    </button>
+                  </div>
+                </div>
+                <img class="object-cover h-80 md:w-80 w-full md:rounded-none" src="{% static '' %}image/bottle.png" alt=""/>
+            </a>
+          </div>                   
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- second content -->
+  <div class="hidden md:block md:grid items-center md:justify-items-center">
+    <a href="#" class="bg-[#F7EBEA] md:container mr-2 flex flex-col md:w-11/12 items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row 250A] dark:border-gray-700">
+        <img class="w-screen md:w-7/12 h-72 md:rounded-none" src="{% static '' %}image/uten.jpg" alt=""/>
+        <div class="flex flex-col justify-between p-4 leading-normal items-center md:items-left w-screen">
+          <span class="text-red-600 font-bold text-xs md:text-xm pb-6">SHOP</span>
+          <h5 class="mb-2 text-base md:text-2xl font-bold tracking-tight text-grey-900 dark:text-white">Food Condiments</h5>
+          <p class="mb-3 text-center md:text-left font-normal text-gray-700 dark:text-gray-400 pb-4">Enhance your flavor and complement your dish</p>
+          <div class="mt-4">
+            <button type="button" class="flex text-red-700 hover:text-white w-36 md:w-44 border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-semibold font-sans text-xm md:text-base px-2 md:px-5 py-3.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+              SHOP NOW
+              <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 ml-3 w-3.5" fill="#B1250A" height="1.2em" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+            </button>
+
+          </div>
+        </div>
+    </a>
+  </div> 
+
+  <div class="customers container py-3  md:my-20">
+    <div class="block md:hidden titles text-center leading-tight my-6 py-4">
+      {% comment %} <h1 class="font-bold text-xm md:text-3xl font-sans py-6 my-6">What Customers Are Saying About Udy Foods</h1> {% endcomment %}
+      {% comment %} <Testimony /> {% endcomment %}
+      <h1 class="font-bold text-xm md:text-3xl font-sans py-6 my-6">Shop Our Latest Natural Food Ingredients</h1>
+      <div class="grid grid-cols-2 md:grid-cols-4 place-content-center md:ml-6 md:pl-6">
+          {% for item in product  %}
+            {% if item.category.name == 'CONDIMENTS' %}
+                <div class="w-10/12 bg-white">
+                    <a href="{% url 'commerce:detail' item.slug %}">
+                        {% if item.cloundImage is not True %}
+                            <img width="300" height="300" id='img' class="" src="{{ item.image.url }}" alt="product img" />
+                        {% else %}
+                            <img width="300" height="300" id='img' class="" src="{{ item.cloundImage.url }}" alt="product img" /> 
+                        {% endif %}
+                    </a>
+                    <div class="md:px-5 pb-5 py-3">
+                        <a href="{% url 'commerce:category' %}">
+                            <p class="text-sm text-left font-sans leading-6 font-normal text-[#3a3a3a]">{{ item.category.name }}</p>
+                        </a>
+                        <a href="{% url 'commerce:detail' item.slug %}">
+                            <h5 class="text-base text-left font-sans leading-6 font-bold text-black">{{item.name}}</h5>
+                        </a>
+                        <div class="flex md:items-center mt-2.5 mb-5">
+                            <span class="text-sm font-bold text-[#3a3a3a] leading-6">₦{{item.price}}</span>
+                        </div>
+                        <form action="{% url 'commerce:addtocart' %}" method="POST" class="d-flex">
+                        {% csrf_token %}
+                            <input type="hidden"
+                                name="quantity" class="" placeholder="1" value="1">
+
+                            <input type="hidden" name="prodids" value="{{item.pk}}">
+                            
+                            <div class="flex md:items-center justify-between">
+                                <button type= "submit" name="cart" value="cart" class="text-white bg-[#B1250A] hover:bg-black focus:ring-4 focus:outline-none focus:ring-black font-bold rounded-lg text-base px-5 py-2.5 text-center dark:bg-[#B1250A] dark:hover:bg-black dark:focus:ring-[#B1250A]">Add to cart</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+          {% endfor %} 
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-2 justify-center">
+      <div>
+        <div class="flex flex-col justify-between p-4 leading-normal items-center">
+          <span class="text-black font-bold md:pb-6 ml-2 text-xl md:text-3xl leading-10">Follow us on Instagram</span>
+          <h5 class="mb-2 text-center md:text-left text-base font-normal leading-7 tracking-tight text-[#3a3a3a] dark:text-white md:py-5">For the latest Nigerian food recipes, hacks discounts. </h5>
+          <a href='/' 
+            class="flex gap-2 mt-1 text-white bg-[#B1250A] w-52 hover:bg-black focus:ring-4 focus:ring-blue-300 font-medium text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 py-3">
+            Follow @Infos
+              <svg xmlns="http://www.w3.org/2000/svg" fill="white" height="1.5em" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="">
+        <img class="rounded-md h-46 w-screen md:max-w-full rounded-lg" src="{% static '' %}image/oilwoman.jpg" width="300" height="100" alt=""/>
+      </div>
+      <div class="">
+        <img class="rounded-md h-46 w-screen md:max-w-full rounded-lg" src="{% static '' %}image/cont.jpg" width="300" height="100" alt=""/>
+      </div>
+      <div class="">
+        <img class="rounded-md h-4/5 w-screen md:max-w-full rounded-lg" src="{% static '' %}image/woman.jpg" width="300" height="100" alt=""/>
+      </div>
+    </div>
+    {% comment %} <div class="desc text-3xl text-center leading-tight pb-6 mb-6">
+      <h1 class="font-bold text-3xl font-sans">Shop Our Latest Natural Food Ingredients</h1>
+    </div> {% endcomment %}
+  </div>
+</div>
+
+
+{% endblock content %}
+
+
+
+
+<!-- footer content -->
+{% block footer %}
+  {% include "components/footer.html" %}
+{% endblock footer %}

@@ -1,0 +1,225 @@
+{% extends "_base.html" %}
+{% load humanize %}
+{% load mathfilters %}
+
+
+
+{% load static %}
+{% comment %} {% load humanize %} {% endcomment %}
+
+
+<!-- title section -->
+{% block title %} | Checkout{% endblock title %}
+
+
+<!-- upper header section -->
+{% block header %}
+  {% include "components/navbar.html" %}
+{% endblock header %}
+
+<!--content -->
+{% block content %}
+<div class="container px-10 pb-20 mx-auto">
+    <a href="{% url 'commerce:cart' %}" class="flex font-semibold text-[#B1250A] text-sm mt-10">      
+        <svg class="fill-current mr-2 text-[#B1250A] w-4" viewBox="0 0 448 512"><path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"/></svg>
+        Continue Shopping
+    </a>
+  <div class="flex flex-col w-full px-0 mx-auto md:flex-row">
+      <div class="flex flex-col md:w-full">
+          <h2 class="mb-4 font-bold md:text-3xl text-heading ">Shipping Address
+          </h2>
+          <form class="justify-center w-full mx-auto" method="post" action>
+              <div class="">
+                  <div class="space-x-0 lg:flex lg:space-x-4">
+                      <div class="w-full lg:w-1/2">
+                          <label for="firstName" class="block mb-3 text-sm font-semibold text-gray-500">First
+                              Name</label>
+                          <input name="firstName" type="text" placeholder="First Name"
+                              class="">
+                      </div>
+                      <div class="w-full lg:w-1/2 ">
+                          <label for="firstName" class="block mb-3 text-sm font-semibold text-gray-500">Last
+                              Name</label>
+                          <input name="Last Name" type="text" placeholder="Last Name"
+                              class="">
+                      </div>
+                  </div>
+                  <div class="mt-4">
+                      <div class="w-full">
+                          <label for="Email"
+                              class="block mb-3 text-sm font-semibold text-gray-500">Email</label>
+                          <input name="Last Name" type="text" placeholder="Email"
+                              class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                      </div>
+                  </div>
+                  <div class="mt-4">
+                      <div class="w-full">
+                          <label for="Address"
+                              class="block mb-3 text-sm font-semibold text-gray-500">Address</label>
+                          <textarea
+                              class="w-full px-4 py-3 text-xs border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                              name="Address" cols="20" rows="4" placeholder="House number and Street name"></textarea>
+                      </div>
+                  </div>
+                  <div class="space-x-0 lg:flex lg:space-x-4">
+                      <div class="w-full lg:w-1/2">
+                          <label for="city"
+                              class="block mb-3 text-sm font-semibold text-gray-500">City</label>
+                          <input name="city" type="text" placeholder="City"
+                              class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                      </div>
+                      <div class="w-full lg:w-1/2 ">
+                          <label for="postcode" class="block mb-3 text-sm font-semibold text-gray-500">
+                              State</label>
+                          <input name="postcode" type="text" placeholder="State"
+                              class="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600">
+                      </div>
+                  </div>
+                  <div class="flex items-center mt-4">
+                      <label class="flex items-center text-sm group text-heading">
+                          <input type="checkbox"
+                              class="w-5 h-5 border border-gray-300 rounded focus:outline-none focus:ring-1">
+                          <span class="ml-2">Save this information for next time</span>
+                      </label>
+                  </div>
+                  <div class="relative pt-3 xl:pt-6"><label for="note"
+                          class="block mb-3 text-sm font-semibold text-gray-500"> Notes
+                          (Optional)</label><textarea name="note"
+                          class="flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
+                          rows="4" placeholder="Notes for delivery"></textarea>
+                  </div>
+              </div>
+          </form>
+      </div>
+      <div class="flex flex-col w-full ml-0 lg:ml-12 lg:w-2/5">
+          <div class="pt-12 md:pt-0 2xl:ps-4">
+              <h2 class="text-xl font-bold">Order Summary
+              </h2>
+              <div class="mt-8">
+                    <div class="flex flex-col space-y-4">
+                        {% for item in prod %}
+                            {% with items=item.product %}
+                                <div class="flex space-x-4">
+                                    <div>
+                                        <img src="{{items.image.url}}" alt="image"
+                                            class="w-10">
+                                    </div>
+                                    <div class="text-xs">
+                                        <h2 class="text-sm font-bold">{{items.name}}</h2>
+                                        <p class="text-sm">{{items.category.name}}</p>
+                                        <span class="text-red-600">Price: </span> ₦{{items.price|mul:item.qnt|floatformat:2|intcomma}}
+                                    </div>
+                                    <div>
+                                        <form action="{% url 'commerce:remove_item' %}" method="POST">
+                                        {% csrf_token %}
+                                            <input type="hidden" name="deletecart" value="{{items.pk}}">
+                                            <!-- <button type="submit" class=" border-0 bg-transparent text-primary"><small> Delete</small></button> -->
+                                            <button type="submit">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endwith %}
+                        {% endfor %}
+                    </div>
+              </div>
+              <div class="my-2">
+                    {% with total_qty=cart|length %}
+                        {% if total_qty > 0 %}
+                            <h2 class="text-xs font-medium">ITEMS {{total_qty}}</h2>
+                        {% else %}
+                            <h2 class="text-xs font-medium">ITEMS 0</h2>
+                        {% endif %}
+                    {% endwith %}
+              </div>
+              <div>
+                <label class="font-medium inline-block mb-3 text-sm uppercase">Shipping</label>
+                <select class="block p-2 text-gray-600 w-full text-xm">
+                  <option select>Choose your shipping address..</option>
+                  <option>Standard shipping - $10.00</option>
+                  <option>Standard shipping - $10.00</option>
+                  <option>Standard shipping - $10.00</option>
+                </select>
+              </div>
+              <div
+                  class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
+                  Total<span class="ml-2">₦{{itemtotal}}</span>
+              </div>
+              <div class="flex items-center mt-2">
+                  <label class="flex items-center text-sm group text-heading">
+                      <input type="checkbox"
+                          class="w-5 h-5 border border-gray-300 rounded focus:outline-none focus:ring-1">
+                      <button data-tooltip-target="tooltip-click1" data-tooltip-placement="bottom" data-tooltip-trigger="click" type="button" class="text-black bg-transparent font-medium text-base px-2 py-2.5 my-3 text-center">Direct Bank Transfer</button>
+                  </label>
+              </div>
+
+              <div class="flex items-center">
+                  <label class="flex items-center text-sm group text-heading">
+                      <input type="checkbox"
+                          class="w-5 h-5 border border-gray-300 rounded focus:outline-none focus:ring-1">
+                      <button data-tooltip-target="tooltip-click" data-tooltip-trigger="click" type="button" class="text-black bg-transparent font-medium text-base px-2 py-2.5 my-3 text-center">
+                        <img src="{% static '' %}image/payment.png" alt="" width="300" height="300" />
+                      </button>
+                  </label>
+              </div>
+              <!-- Show tooltip on click -->
+              <div id="tooltip-click1" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-transparent rounded-lg shadow-sm opacity-0 tooltip">
+                hdhfh
+                hdhfh
+                hdhfh
+                hdhfh
+                hdhfh
+                hdhfh
+                hdhfh
+                hdhfh
+                hdhfh
+                hdhfh
+                hdhfh
+                hdhfh
+                hdhfh
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+              <div id="tooltip-click" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-transparent rounded-lg shadow-sm opacity-0 tooltip">
+                Tooltip content
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
+              
+              <div class="flex items-center mt-2">
+                <P>
+                  Your personal data will be used to process your order, 
+                  support your experience throughout this website, and for 
+                  other purposes described in our privacy policy.
+                </p>
+              </div>
+              <div class="flex items-center mt-2">
+                  <label class="flex items-center text-sm group text-heading">
+                      <input type="checkbox"
+                          class="w-5 h-5 border border-gray-300 rounded focus:outline-none focus:ring-1">
+                     I have read and agree to the website terms and conditions *
+                  </label>
+              </div>
+      
+              <div class="mt-4">
+                <button
+                  class="w-full px-6 py-2 text-white bg-[#B1250A] hover:bg-[#B1250A]">Process
+                </button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>          
+
+{% endblock content %}
+
+
+
+
+<!-- footer content -->
+{% block footer %}
+  {% include "components/footer.html" %}
+{% endblock footer %}

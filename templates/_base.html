@@ -1,0 +1,150 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home {% block title %} {% endblock title %}</title>
+
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    {% endcompress %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    
+    <!-- Owl Carousel CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    />
+
+</head>
+
+<body class="">
+    <!-- upper header section -->
+    {% block header %}
+      
+    {% endblock header %}
+
+    <!-- banner section -->
+    {% block banner %}
+    
+    {% endblock banner %}
+
+    <!-- first content -->
+    {% block content %}
+    
+    {% endblock content %}
+
+    <!-- footer section -->    
+    {% block footer %}
+      
+    {% endblock footer %}
+
+    {% comment %} <div class="container mx-auto mt-4">
+        {% block content %}
+        {% endblock content %}
+    </div> {% endcomment %}
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel({
+                margin: 30,
+                responsiveClass: true,
+                nav: true,
+                dots: true,
+                autoplay: true,
+                items: 2,
+                fluidSpeed: 200,
+                smartSpeed: 1000,
+                responsive: {0: {items: 1,},400: {items: 1,},600: {items: 2,}, }
+            });
+
+            $('#decrementBtn').click(function (e) {
+               e.preventDefault()
+                var quantityInput = $('#quantityInput');
+                // Decrease the value by 1, but ensure it doesn't go below 0
+                quantityInput.val(Math.max(1, parseInt(quantityInput.val()) - 1));
+            });
+
+            $('#incrementBtn').click(function (e) {
+                e.preventDefault()
+                var quantityInput = $('#quantityInput');
+                // Increase the value by 1
+                quantityInput.val(parseInt(quantityInput.val()) + 1);
+            });
+
+            $('#refresh').click(function(e){
+                e.preventDefault();
+                var prod_id = $(this).closest('.item_data').find('.prod_id').val();
+                //var change = $(this).attr('id') === 'decrementBtn' ? -1 : 1;
+                //quantityInput.val(Math.max(1, parseInt(quantityInput.val()) + change));
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "commerce:updatecart" %}',
+                    data: {
+                        post_id: prod_id,
+                        qty_update: $('#quantityInput').val(),
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                        action: 'post'
+                    },
+                    success: function(json){
+                        document.getElementById("price").innerHTML = json['cartsub']
+                        document.getElementById("subtotal").innerHTML = json['subtotal']
+                        document.getElementById("count").innerHTML = json['qnt']
+                        document.getElementById("counts").innerHTML = json['qnt']
+                        //var subtotal = $(this).closest('.item_data').find('#subtotal')
+                        //subtotal.text(json['cartsub']);
+                        //$('#quantityInput').val(json['qnt']);
+                        console.log(json)
+                    },
+                    error: function(rs, e){
+                    console.log(rs.error);
+                    },
+                });
+            });
+
+            $('#detailsubmit').click(function(e){
+                e.preventDefault();
+                var prodid = $("#prodid").val()
+                console.log(prodid)
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "commerce:addtocart" %}',
+                    data: {
+                        qty_new: $(".quantityInput").val(),
+                        prod_id: prodid,
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                        action: 'post'
+                    },
+                    success: function(response){
+                        //document.getElementById("currentqnt").innerHTML = json.qnt
+                        alert('Message sent successfully');
+                    },
+                    error: function(xhr, errmsg, err){
+                    console.log(errmsg);
+                    },
+                });
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>

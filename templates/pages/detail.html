@@ -1,0 +1,246 @@
+{% extends "_base.html" %}
+
+
+
+{% load static %}
+{% comment %} {% load humanize %} {% endcomment %}
+
+
+<!-- title section -->
+{% block title %} | Categories{% endblock title %}
+
+
+<!-- upper header section -->
+{% block header %}
+  {% include "components/navbar.html" %}
+{% endblock header %}
+
+<!--content -->
+{% block content %}
+<div class="container mx-auto px-5">
+    <div class="max-w-6xl px-4 md:py-5 md:my-6 font-poppins mx-auto lg:py-8 md:px-6">
+        <div class="flex flex-wrap -mx-4">
+            <div class="w-full px-4 md:w-1/2 ">
+                <div class="sticky top-0 z-50 overflow-hidden ">
+                    <div class="relative md:mb-6 lg:mb-10" style="height:450px;">
+                        <img src="{{prod.image.url}}"
+                            alt="" class="object-contain w-full h-full ">
+                    </div>
+                    <div class="flex-wrap hidden md:flex ">
+                        <div class="w-1/2 p-2 sm:w-1/4">
+                            <a href="#"
+                                class="block border border-red-100 dark:border-gray-700 dark:hover:border-gray-600 hover:border-red-300 ">
+                                <img src="{{prod.image.url}}"
+                                    alt="" class="object-cover w-full lg:h-32">
+                            </a>
+                        </div>
+                        <div class="w-1/2 p-2 sm:w-1/4">
+                            <a href="#"
+                                class="block border border-red-100 dark:border-transparent dark:hover:border-gray-600 hover:border-red-300">
+                                <img src="{{prod.image.url}}"
+                                    alt="" class="object-cover w-full lg:h-32">
+                            </a>
+                        </div>
+                        <div class="w-1/2 p-2 sm:w-1/4">
+                            <a href="#"
+                                class="block border border-red-100 dark:border-transparent dark:hover:border-gray-600 hover:border-red-300">
+                                <img src="{{prod.image.url}}"
+                                    alt="" class="object-cover w-full lg:h-32">
+                            </a>
+                        </div>
+                        <div class="w-1/2 p-2 sm:w-1/4">
+                            <a href="#"
+                                class="block border border-red-100 dark:border-transparent dark:hover:border-gray-600 hover:border-red-300">
+                                <img src="{{prod.image.url}}"
+                                    alt="" class="object-cover w-full lg:h-32">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full px-4 md:w-1/2 ">
+                <div class="lg:pl-20">
+                    <div class="pb-6 border-b border-gray-200 dark:border-gray-700">
+                        <a href="{% url 'commerce:category' %}" class="text-xl md:text-lg font-medium text-rose-500 dark:text-rose-200"><small class="text-black text-bold">Category:</small> {{prod.category.name}}</a>
+                        <h2 class="max-w-xl mt-2 mb-6 font-medium md:font-normal dark:text-gray-300 text-2xl md:text-4xl">
+                            {{prod.name}}
+                        </h2>
+                        <p class="inline-block text-2xl pb-5 font-semibold text-gray-700 dark:text-gray-400 ">
+                            <span>₦{{prod.price}}</span>
+                            <span
+                                class="text-base font-normal text-gray-500 line-through dark:text-gray-400">₦{{prod.oldprice}}
+                            </span>
+                        </p>
+                        <p class="max-w-md text-gray-700 dark:text-gray-400">
+                            {{prod.desc}}
+                        </p>
+
+                    </div>
+                    <span class=" text-black text-bold float-right">Tags:
+                        {% if prod %}
+                            {% for tag in prod.tags.all %}
+                                <a href="{% url 'commerce:tags_by_tag' tag.slug %}" class="text-rose-500 dark:text-rose-200"><small>{{tag.name}}</small></a>
+                                {% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </span>
+                    {% comment %} <div class="my-8">
+                        <h2 class="mb-2 text-xl font-bold dark:text-gray-400">
+                            Color
+                        </h2>
+                        <div class="flex flex-wrap -mb-2">
+                            <button
+                                class="p-1 mb-2 mr-2 border border-transparent rounded-full hover:border-gray-400 dark:border-gray-800 dark:hover:border-gray-400 ">
+                                <div class="w-6 h-6 bg-red-600 rounded-full"></div>
+                            </button>
+                            <button
+                                class="p-1 mb-2 mr-2 border border-transparent rounded-full hover:border-gray-400 dark:border-gray-800 dark:hover:border-gray-400">
+                                <div class="w-6 h-6 bg-green-600 rounded-full"></div>
+                            </button>
+                            <button
+                                class="p-1 mb-2 border border-transparent rounded-full hover:border-gray-400 dark:border-gray-800 dark:hover:border-gray-400">
+                                <div class="w-6 h-6 bg-yellow-500 rounded-full"></div>
+                            </button>
+                            <button
+                                class="p-1 mb-2 border border-transparent rounded-full hover:border-gray-400 dark:border-gray-800 dark:hover:border-gray-400">
+                                <div class="w-6 h-6 rounded-full bg-sky-400"></div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="pb-6 mb-8 border-b border-gray-300 dark:border-gray-700">
+                        <h2 class="mb-2 text-xl font-bold dark:text-gray-400">
+                            Size</h2>
+                        <div class="flex flex-wrap -mb-2">
+                            <button
+                                class="py-1 mb-2 mr-1 border w-11 hover:border-red-400 dark:border-gray-400 hover:text-red-600 dark:hover:border-gray-300 dark:text-gray-400">XL
+                            </button>
+                            <button
+                                class="py-1 mb-2 mr-1 border w-11 hover:border-red-400 hover:text-red-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">S
+                            </button>
+                            <button
+                                class="py-1 mb-2 mr-1 border w-11 hover:border-red-400 hover:text-red-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">M
+                            </button>
+                            <button
+                                class="py-1 mb-2 mr-1 border w-11 hover:border-red-400 hover:text-red-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">XS
+                            </button>
+                        </div>
+                    </div> {% endcomment %}
+                    <div class="my-20 flex flex-wrap items-center ">
+                        <div class="mb-4 mr-4 lg:mb-0">
+                            <div class="w-28">
+                                <div class="relative flex flex-row w-full h-10 bg-transparent rounded-lg">
+                                    <button
+                                        class="w-20 h-full text-gray-600 bg-gray-100 border-r rounded-l outline-none cursor-pointer dark:border-gray-700 dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-900 hover:bg-gray-300">
+                                        <span id="decrementBtn" class="m-auto text-2xl font-thin">-</span>
+                                    </button>
+                                    <form action="{% url 'commerce:addtocart' %}" method="POST" class="formdetail d-flex">
+                                    {% csrf_token %}
+                                        <input id="quantityInput" type="number"
+                                            name="quantity" class="quantityInput flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-100 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black"
+                                            value="1">
+                                        <input type="hidden" id="prodid" class="prodid" name="prodid" value="{{prod.pk}}">
+                                        
+                                        {% comment %} <button type="submit" class="btn mi w-50 ml-5">Add To Cart</button><br> {% endcomment %}
+                                    </form>
+                                    <button
+                                        class="w-20 h-full text-gray-600 bg-gray-100 border-l rounded-r outline-none cursor-pointer dark:border-gray-700 dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-300">
+                                        <span id="incrementBtn" class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4 mr-4 lg:mb-0">
+                            <button
+                                class="w-full h-10 p-2 mr-4 bg-red-500 dark:text-gray-200 text-gray-50 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-500">
+                                Buy Now</button>
+                        </div>
+                        <div class="mb-4 mr-4 lg:mb-0">
+                            <button type="submit" id="detailsubmit"
+                                class="flex items-center justify-center w-full h-10 p-2 text-gray-700 border border-gray-300 lg:w-11 hover:text-gray-50 dark:text-gray-200 dark:border-red-600 hover:bg-red-600 hover:border-red-600 dark:bg-red-600 dark:hover:bg-red-500 dark:hover:border-red-500 dark:hover:text-gray-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                </svg>
+                            </button>
+                            {% comment %} <form action="{% url 'commerce:addtocart' %}" method="POST" class="d-flex">
+                            {% csrf_token %}
+                                <input id="quantityInput" type="hidden"
+                                    name="quantity" class="quantityInput flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-100 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black"
+                                    value="1" placeholder="1">
+                                <input type="hidden" name="prodid" value="{{prod.pk}}">
+
+                            </form> {% endcomment %}
+                        </div>
+                        <div class="mb-4 lg:mb-0">
+                            <button
+                                class="flex items-center justify-center w-full h-10 p-2 text-gray-700 border border-gray-300 lg:w-11 hover:text-gray-50 dark:text-gray-200 dark:border-red-600 hover:bg-red-600 hover:border-red-600 dark:bg-red-600 dark:hover:bg-red-500 dark:hover:border-red-500 dark:hover:text-gray-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class=" bi bi-heart" viewBox="0 0 16 16">
+                                    <path
+                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="my-6 border-b border-gray-200 dark:border-gray-700">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+                <li class="mr-2 text-[#B1250A]" role="presentation">
+                    <button class="text-[#B1250A] dark:text-[#B1250A] inline-block p-4 border-b-2 rounded-t-lg" id="description-tab" data-tabs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="false">Description</button>
+                </li>
+                <li class="mr-2" role="presentation">
+                    <button class="text-[#B1250A] dark:text-[#B1250A] inline-block p-4 border-b-2 rounded-t-lg hover:text-[#B1250A] hover:border-[#B1250A] dark:hover:text-[#B1250A]" id="review-tab" data-tabs-target="#review" type="button" role="tab" aria-controls="review" aria-selected="false">Reviews</button>
+                </li>
+            </ul>
+        </div>
+        <div id="default-tab-content">
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="description" role="tabpanel" aria-labelledby="description-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">{{prod.review}}</p>
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="review" role="tabpanel" aria-labelledby="review-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Dashboard tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            </div>
+        </div>
+
+        <main class='md:mx-6 md:px-6 py-2 my-4'>
+            <div class="grid grid-cols-4 place-content-center md:ml-6 md:pl-6">
+                <div class="md:w-10/12 bg-white">
+                    <a href="#">
+                        <img width="300" height="300" id='img' class="" src="{% static '' %}image/soup.png" alt="product img" />
+                    </a>
+                    <div class="md:px-5 md:pb-5 py-3">
+                        <a href="#">
+                            <p class="text-sm font-sans leading-6 font-normal text-[#3a3a3a]">SOUP</p>
+                        </a>
+                        <a href="#">
+                            <h5 class="text-base font-sans leading-6 font-bold text-black">Condiments</h5>
+                        </a>
+                        <div class="flex items-center md:mt-2.5 md:mb-5">
+                            <span class="text-sm font-bold text-[#3a3a3a] leading-6">₦1500</span>
+                        </div>
+                        <div class="flex md:items-center justify-between">
+                            <a href="#" class="text-white bg-[#B1250A] hover:bg-black focus:ring-4 focus:outline-none focus:ring-black rounded-lg text-xs md:text-base px-3 md:px-5 py-2.5 md:text-center dark:bg-[#B1250A] dark:hover:bg-black dark:focus:ring-[#B1250A]">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+<!-- footer content -->
+{% block footer %}
+  {% include "components/footer.html" %}
+{% endblock footer %}
+
+{% comment %} https://tailgrail.com/tailwind/product-detail {% endcomment %}
