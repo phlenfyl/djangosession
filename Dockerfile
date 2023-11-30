@@ -23,8 +23,5 @@ COPY . .
 EXPOSE 8000
 
 
-CMD [\
-"sh", "-c", \
-"npx", "tailwindcss", "-i", "./base/static/src/input.css", "-o", "./base/static/src/output.css", "--watch" & "python3", "manage.py", "runserver", "0.0.0.0:8000" \
-]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
 
