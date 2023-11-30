@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["*", ".shoptobuy-2ywdit2v.b4a.run", "shoptobuy-2ywdit2v.b4a.run
 
 FORCE_SCRIPT_NAME = '/'
 CSRF_TRUSTED_ORIGINS = ['https://shoptobuy-2ywdit2v.b4a.run','http://127.0.0.1']
-CSRF_COOKIE_DOMAIN = 'https://shoptobuy-2ywdit2v.b4a.run'
+CSRF_COOKIE_DOMAIN = 'http://127.0.0.1'
 
 # Application definition
 
