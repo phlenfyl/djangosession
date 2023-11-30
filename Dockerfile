@@ -22,7 +22,7 @@ ENV PATH="/venv/bin:$PATH"
 COPY requirements.txt ./
 
 # Install psycopg2 with specific flags and environment variables
-RUN LIBRARY_PATH=/usr/local/lib:/usr/lib pip install psycopg2==2.9.9
+# RUN LIBRARY_PATH=/usr/local/lib:/usr/lib pip install psycopg2==2.9.9
 
 
 RUN pip install --no-cache-dir -r requirements.txt
