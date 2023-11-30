@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-b2i35@ynsn2&6#c_(*-=^3l3auw8_+8@&(@hmd*)=6_i)ct#c=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*", ".shoptobuy-2ywdit2v.b4a.run", "shoptobuy-2ywdit2v.b4a.run"]
 
 
 FORCE_SCRIPT_NAME = '/'
