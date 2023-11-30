@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% load humanize %}
 
 
 
@@ -38,12 +39,12 @@
                     <div class="w-10/12 bg-white">
                         <a href="{% url 'commerce:detail' item.slug %}">
                             {% if item.cloundImage is not True %}
-                                <img width="300" height="300" id='img' class="" src="{{ item.image.url }}" alt="product img" />
+                                <img id='img' class="h-28 md:h-32 w-11/12 md:w-screen" src="{{ item.image.url }}" alt="product img" />
                             {% else %}
-                                <img width="300" height="300" id='img' class="" src="{{ item.cloundImage.url }}" alt="product img" /> 
+                                <img id='img' class="h-28 md:h-32 w-11/12 md:w-screen" src="{{ item.cloundImage.url }}" alt="product img" /> 
                             {% endif %}
                         </a>
-                        <div class="md:px-5 pb-5 py-3">
+                        <div class="md:px-1 pb-5 py-3">
                             <a href="{% url 'commerce:category' %}">
                                 <p class="text-sm font-sans leading-6 font-normal text-[#3a3a3a]">{{ item.category.name }}</p>
                             </a>
@@ -51,7 +52,7 @@
                                 <h5 class="text-base font-sans leading-6 font-bold text-black">{{item.name}}</h5>
                             </a>
                             <div class="flex items-center mt-2.5 mb-5">
-                                <span class="text-sm font-bold text-[#3a3a3a] leading-6">₦{{item.price}}</span>
+                                <span class="text-sm font-bold text-[#3a3a3a] leading-6">₦{{item.price|intcomma}}</span>
                             </div>
                             <form action="{% url 'commerce:addtocart' %}" method="POST" class="d-flex">
                             {% csrf_token %}
