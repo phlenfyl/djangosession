@@ -1,4 +1,5 @@
 from decimal import Decimal
+from datetime import datetime, date
 
 from commerce.models import *
 from productcart.models import *
@@ -19,11 +20,21 @@ class Cart():
 
     def add(self, prod_id, qnt):
         product_id = str(prod_id.pk)
-
-        if product_id in self.cart:
+        dashcart = ProductCart.objects.filter(item_paid=False, product_id= prod_id.pk)
+        if product_id in self.cart and dashcart.exists():
             self.cart[product_id]['qnt'] = qnt
+            newqnt = ProductCart()
+            newqnt.quantity = qnt
+            newqnt.save()          
         else:
-            self.cart[product_id] = {'price': str(prod_id.price), 'qnt':qnt}     
+            self.cart[product_id] = {'price': str(prod_id.price), 'qnt':qnt}
+            newcart = ProductCart(pk = prod_id.pk)
+            newcart.quantity = qnt
+            newcart.total = prod_id.price
+            newcart.name = prod_id.name
+            newcart.created = datetime.now()
+            newcart.save()
+
         self.save()
 
     def __iter__(self):

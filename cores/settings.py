@@ -10,18 +10,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=2c_@ac5$ocp+3($bd(l05(3k(qtp$!bq*%@(a30-#*(uwhwa0'
+SECRET_KEY = 'django-insecure-b2i35@ynsn2&6#c_(*-=^3l3auw8_+8@&(@hmd*)=6_i)ct#c='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*", ".shoptobuy-2ywdit2v.b4a.run", "shoptobuy-2ywdit2v.b4a.run"]
 
 
 FORCE_SCRIPT_NAME = '/'
 CSRF_TRUSTED_ORIGINS = ['https://shoptobuy-2ywdit2v.b4a.run','http://127.0.0.1']
 CSRF_COOKIE_DOMAIN = 'http://127.0.0.1'
-
 
 # Application definition
 
@@ -56,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'core.urls'
+ROOT_URLCONF = 'cores.urls'
 
 TEMPLATES = [
     {
@@ -76,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'core.wsgi.application'
+WSGI_APPLICATION = 'cores.wsgi.application'
 
 
 # Database
@@ -125,12 +124,25 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
 COMPRESS_ROOT = os.path.join(BASE_DIR , 'base/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 COMPRESS_ENABLED = True
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+]
 
-STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+# try:
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'base/static')]
+# except:
+#     COMPRESS_ROOT = os.path.join(BASE_DIR , 'base/static')
+#     COMPRESS_ENABLED = True
+
+#     STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
@@ -139,6 +151,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 ####################################
     ##  CKEDITOR CONFIGURATION ##
@@ -287,6 +300,5 @@ JAZZMIN_SETTINGS = {
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
     "user_avatar": 'image/logo1.png',
 }
-
 
 

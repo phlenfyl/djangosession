@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 import uuid
 
-from productcart.models import ProductCart
+from productcart.models import *
 from base.views import G
 from .models import *
 from productcart.cart import Cart
@@ -66,9 +66,7 @@ def addtocart(request):
 
             cart.add(prod_id=prod_id, qnt = addQuan)
 
-            # cartqty = cart.__len__()
 
-            # return {'cartqty':cartqty}
 
             return redirect(url)
         elif request.POST.get('action') == 'post':
@@ -90,7 +88,7 @@ def cart(request):
     cart = Cart(request)
     
     if cart:
-        subtotal += cart.get_total_price ()   
+        subtotal += cart.get_total_price () 
     
     return render(request, 'utils/cart.html', {'cart':cart, 'subtotal':subtotal})
 
